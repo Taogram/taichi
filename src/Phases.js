@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2023-05-06 13:01:41
  * @LastEditors: lax
- * @LastEditTime: 2023-05-06 15:56:17
+ * @LastEditTime: 2023-05-06 19:47:04
  */
 const TaiChi = require("@/TaiChi.js");
 const PHASES = ["金", "水", "木", "火", "土"];

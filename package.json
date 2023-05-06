@@ -1,17 +1,17 @@
 {
-  "name": "taichi.js",
+  "name": "tao_taichi.js",
   "version": "0.0.0",
-  "description": "nutation by js",
+  "description": "阴阳分，五行衍",
   "private": false,
   "license": "MIT",
   "author": {
     "name": "lax",
     "email": "1546356935@qq.com"
   },
-  "homepage": "",
+  "homepage": "https://github.com/Taogram/taogram.git",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Taogram/taichi.git"
   },
   "main": "dist/index.js",
   "scripts": {

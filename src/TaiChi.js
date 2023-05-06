@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2023-05-05 16:19:28
  * @LastEditors: lax
- * @LastEditTime: 2023-05-06 11:41:09
+ * @LastEditTime: 2023-05-06 19:47:12
  */
 const LOGOS = ["阴", "阳"];
 class TaiChi {
