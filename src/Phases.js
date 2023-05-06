@@ -4,16 +4,17 @@
  * @Author: lax
  * @Date: 2023-05-06 13:01:41
  * @LastEditors: lax
- * @LastEditTime: 2023-05-06 14:39:18
+ * @LastEditTime: 2023-05-06 15:56:17
  */
 const TaiChi = require("@/TaiChi.js");
 const PHASES = ["金", "水", "木", "火", "土"];
 const RELATION = require("@/alias.js");
 class Phases extends TaiChi {
 	constructor(phases, logos) {
+		if (typeof phases === "object" && phases instanceof PHASES) return phases;
 		super(logos);
-		this.phases =
-			~~(phases + 1) === 0 ? PHASES.indexOf(this.phases) : this.phases % 5;
+		this.phases = ~~(phases + 1) === 0 ? PHASES.indexOf(phases) : ~~phases % 5;
+		if (this.phases === -1) throw new Error("this arg can`t be use");
 	}
 
 	setPhases(phases) {
@@ -30,59 +31,63 @@ class Phases extends TaiChi {
 	 * @returns
 	 */
 	with(another) {
-		if (!(another instanceof Phases)) throw new Error("");
-		const phases = another.phases;
+		const ano = new Phases(another);
+		const phases = ano.phases;
 		// 我
 		if (this.phases === phases) return 0;
 		// 我生者
-		if (this.phases === this.promotion()) return 1;
+		if (this.promotion() === phases) return 1;
 		// 生我者
-		if (this.phases === this.promoted()) return 2;
+		if (this.promoted() === phases) return 2;
 		// 克我者
-		if (this.phases === this.restrained()) return 3;
+		if (this.restrained() === phases) return 3;
 		// 我克者
-		if (this.phases === this.restraint()) return 4;
+		if (this.restraint() === phases) return 4;
 		throw new Error("arg can`t be use");
 	}
 
 	// 我生者/相生
-	promotion() {
-		return (this.phases + 1) % 5;
+	promotion(is = false) {
+		const index = (this.phases + 1) % 5;
+		return is ? PHASES[index] : index;
 	}
 
 	// 相生
-	sheng() {
-		return this.promotion();
+	sheng(is) {
+		return this.promotion(is);
 	}
 
 	// 生我者/相泄
-	promoted() {
-		return (this.phases - 1 + 5) % 5;
+	promoted(is = false) {
+		const index = (this.phases - 1 + 5) % 5;
+		return is ? PHASES[index] : index;
 	}
 
 	// 相泄
-	xie() {
-		return this.promoted();
+	xie(is) {
+		return this.promoted(is);
 	}
 
 	// 我克者/相克
-	restraint() {
-		return (this.phases + 2) % 5;
+	restraint(is = false) {
+		const index = (this.phases + 2) % 5;
+		return is ? PHASES[index] : index;
 	}
 
 	// 相克
-	ke() {
-		return this.restraint();
+	ke(is) {
+		return this.restraint(is);
 	}
 
 	// 克我者/相耗
-	restrained() {
-		return (this.phases - 2 + 5) % 5;
+	restrained(is = false) {
+		const index = (this.phases - 2 + 5) % 5;
+		return is ? PHASES[index] : index;
 	}
 
 	// 相耗
-	hao() {
-		return this.restrained();
+	hao(is) {
+		return this.restrained(is);
 	}
 
 	// 相乘
@@ -92,77 +97,77 @@ class Phases extends TaiChi {
 	// TODO
 
 	// 同我者旺
-	vigorous() {
-		return this.phases;
+	vigorous(is) {
+		return this.getPhases(is);
 	}
 
 	// 旺
-	wang() {
-		return this.vigorous();
+	wang(is) {
+		return this.vigorous(is);
 	}
 
 	// 我生者相
-	second() {
-		return this.promotion();
+	second(is) {
+		return this.promotion(is);
 	}
 
 	// 相
-	xiang() {
-		return this.second();
+	xiang(is) {
+		return this.second(is);
 	}
 
 	// 生我者休
-	rest() {
-		return this.promoted();
+	rest(is) {
+		return this.promoted(is);
 	}
 
 	// 休
-	xiu() {
-		return this.rest();
+	xiu(is) {
+		return this.rest(is);
 	}
 
 	// 克我者囚
-	imprison() {
-		return this.restrained();
+	imprison(is) {
+		return this.restrained(is);
 	}
 
 	// 囚
-	qiu() {
-		return this.imprison();
+	qiu(is) {
+		return this.imprison(is);
 	}
 
 	// 我克者死
-	death() {
-		return this.restraint();
+	death(is) {
+		return this.restraint(is);
 	}
 
 	// 死
-	si() {
-		return this.death();
+	si(is) {
+		return this.death(is);
 	}
 
-	get(tag) {
+	get(tag, is = false) {
 		switch (tag) {
 			case "旺":
-				return this.wang();
+				return this.wang(is);
 			case "相":
-				return this.xiang();
+				return this.xiang(is);
 			case "休":
-				return this.xiu();
+				return this.xiu(is);
 			case "囚":
-				return this.qiu();
+				return this.qiu(is);
 			case "死":
-				return this.si();
+				return this.si(is);
 			case "生":
-				return this.sheng();
+				return this.sheng(is);
 			case "泄":
-				return this.xie();
+				return this.xie(is);
 			case "耗":
-				return this.hao();
+				return this.hao(is);
 			case "克":
-				return this.ke();
+				return this.ke(is);
 			default:
-				throw new Error("必须有一个标签");
+				throw new Error("this tag must be in [旺相休囚死生泄耗克]");
 		}
 	}
 }
