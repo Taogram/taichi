@@ -21,13 +21,13 @@ module.exports = {
 	SI: 4,
 	// 生被生被克克
 	SHENG: 1,
-	_SHENG: 2,
-	_KE: 3,
+	XIE: 2,
+	HAO: 3,
 	KE: 4,
 	// 生被生被克克
 	S: 1,
-	_S: 2,
-	_K: 3,
+	X: 2,
+	H: 3,
 	K: 4,
 	// 生被生被克克
 	PROMOTION: 1,

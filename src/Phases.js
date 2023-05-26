@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2023-05-06 13:01:41
  * @LastEditors: lax
- * @LastEditTime: 2023-05-06 19:47:04
+ * @LastEditTime: 2023-05-16 19:05:52
  */
 const TaiChi = require("@/TaiChi.js");
 const PHASES = ["金", "水", "木", "火", "土"];
@@ -33,7 +33,7 @@ class Phases extends TaiChi {
 	with(another) {
 		const ano = new Phases(another);
 		const phases = ano.phases;
-		// 我
+		// 同我者
 		if (this.phases === phases) return 0;
 		// 我生者
 		if (this.promotion() === phases) return 1;
