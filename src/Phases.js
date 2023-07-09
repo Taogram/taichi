@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2023-05-06 13:01:41
  * @LastEditors: lax
- * @LastEditTime: 2023-07-09 19:55:14
+ * @LastEditTime: 2023-07-09 20:33:28
  */
 const TaiChi = require("@/TaiChi.js");
 /**
@@ -19,7 +19,7 @@ const SEQUENCE = ["金", "水", "木", "火", "土"];
 const RELATION = require("@/alias.js");
 class Phases extends TaiChi {
 	constructor(phases, logos) {
-		if (typeof phases === "object" && phases instanceof PHASES) return phases;
+		if (typeof phases === "object" && phases instanceof Phases) return phases;
 		super(logos);
 
 		/**
