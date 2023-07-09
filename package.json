@@ -1,9 +1,9 @@
 {
   "name": "tao_taichi.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "阴阳分，五行衍",
   "private": false,
-  "license": "MIT",
+  "license": "MPL-2.0",
   "author": {
     "name": "lax",
     "email": "1546356935@qq.com"

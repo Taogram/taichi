@@ -1,9 +1,9 @@
 const Phases = require("@/Phases.js");
 describe("五行生克", () => {
 	it("金", () => {
-		const element = new Phases(0);
+		const element = new Phases(3);
 		// init
-		expect(element.getPhases()).toBe(0);
+		expect(element.getPhases()).toBe(3);
 		expect(element.getPhases(true)).toBe("金");
 		// 生被生被克克/生泄耗克
 		expect(element.promotion(true)).toBe("水");
@@ -43,9 +43,9 @@ describe("五行生克", () => {
 	});
 
 	it("水", () => {
-		const element = new Phases(1);
+		const element = new Phases(0);
 		// init
-		expect(element.getPhases()).toBe(1);
+		expect(element.getPhases()).toBe(0);
 		expect(element.getPhases(true)).toBe("水");
 		// 生被生被克克/生泄耗克
 		expect(element.promotion(true)).toBe("木");
@@ -127,9 +127,9 @@ describe("五行生克", () => {
 	});
 
 	it("火", () => {
-		const element = new Phases(3);
+		const element = new Phases(1);
 		// init
-		expect(element.getPhases()).toBe(3);
+		expect(element.getPhases()).toBe(1);
 		expect(element.getPhases(true)).toBe("火");
 		// 生被生被克克/生泄耗克
 		expect(element.promotion(true)).toBe("土");

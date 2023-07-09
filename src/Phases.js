@@ -4,23 +4,49 @@
  * @Author: lax
  * @Date: 2023-05-06 13:01:41
  * @LastEditors: lax
- * @LastEditTime: 2023-05-16 19:05:52
+ * @LastEditTime: 2023-07-09 13:15:30
  */
 const TaiChi = require("@/TaiChi.js");
-const PHASES = ["金", "水", "木", "火", "土"];
+/**
+ * 天一生水、地六成之;
+ * 地二生火、天七成之;
+ * 天三生木、地八成之;
+ * 地四生金、天九成之;
+ * 天五生土、地十成之;
+ */
+const PHASES = ["水", "火", "木", "金", "土"];
+const SEQUENCE = ["金", "水", "木", "火", "土"];
 const RELATION = require("@/alias.js");
 class Phases extends TaiChi {
 	constructor(phases, logos) {
 		if (typeof phases === "object" && phases instanceof PHASES) return phases;
 		super(logos);
+
+		/**
+		 * 五行序列
+		 * @description 0~4->水火木金土
+		 */
 		this.phases = ~~(phases + 1) === 0 ? PHASES.indexOf(phases) : ~~phases % 5;
-		if (this.phases === -1) throw new Error("this arg can`t be use");
+		if (this.phases === -1)
+			throw new Error("该参数不可用/this arg can`t be use");
+
+		/**
+		 * 生克序列
+		 * @description 0~4->金水木火土
+		 */
+		this.round = SEQUENCE.indexOf(PHASES[this.phases]);
 	}
 
-	setPhases(phases) {
-		this.phases = phases;
-	}
+	// 无需使用
+	// setPhases(phases) {
+	// 	this.phases = phases;
+	// }
 
+	/**
+	 * 获取五行
+	 * @param {boolean} is 是否文字
+	 * @returns
+	 */
 	getPhases(is = false) {
 		return is ? PHASES[this.phases] : this.phases;
 	}
@@ -48,8 +74,8 @@ class Phases extends TaiChi {
 
 	// 我生者/相生
 	promotion(is = false) {
-		const index = (this.phases + 1) % 5;
-		return is ? PHASES[index] : index;
+		const index = (this.round + 1) % 5;
+		return is ? SEQUENCE[index] : PHASES.indexOf(SEQUENCE[index]);
 	}
 
 	// 相生
@@ -59,8 +85,8 @@ class Phases extends TaiChi {
 
 	// 生我者/相泄
 	promoted(is = false) {
-		const index = (this.phases - 1 + 5) % 5;
-		return is ? PHASES[index] : index;
+		const index = (this.round - 1 + 5) % 5;
+		return is ? SEQUENCE[index] : PHASES.indexOf(SEQUENCE[index]);
 	}
 
 	// 相泄
@@ -70,8 +96,8 @@ class Phases extends TaiChi {
 
 	// 我克者/相克
 	restraint(is = false) {
-		const index = (this.phases + 2) % 5;
-		return is ? PHASES[index] : index;
+		const index = (this.round + 2) % 5;
+		return is ? SEQUENCE[index] : PHASES.indexOf(SEQUENCE[index]);
 	}
 
 	// 相克
@@ -81,8 +107,8 @@ class Phases extends TaiChi {
 
 	// 克我者/相耗
 	restrained(is = false) {
-		const index = (this.phases - 2 + 5) % 5;
-		return is ? PHASES[index] : index;
+		const index = (this.round - 2 + 5) % 5;
+		return is ? SEQUENCE[index] : PHASES.indexOf(SEQUENCE[index]);
 	}
 
 	// 相耗
