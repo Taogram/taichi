@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2023-05-06 13:01:41
  * @LastEditors: lax
- * @LastEditTime: 2023-07-09 13:15:30
+ * @LastEditTime: 2023-07-09 19:55:14
  */
 const TaiChi = require("@/TaiChi.js");
 /**
@@ -28,7 +28,7 @@ class Phases extends TaiChi {
 		 */
 		this.phases = ~~(phases + 1) === 0 ? PHASES.indexOf(phases) : ~~phases % 5;
 		if (this.phases === -1)
-			throw new Error("该参数不可用/this arg can`t be use");
+			throw new Error(`该参数不可用/this arg can\`t be use =>${phases}`);
 
 		/**
 		 * 生克序列
@@ -69,7 +69,7 @@ class Phases extends TaiChi {
 		if (this.restrained() === phases) return 3;
 		// 我克者
 		if (this.restraint() === phases) return 4;
-		throw new Error("arg can`t be use");
+		throw new Error(`arg can\`t be use =>${another}`);
 	}
 
 	// 我生者/相生
