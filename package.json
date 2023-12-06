@@ -1,7 +1,7 @@
 {
-  "name": "tao_taichi.js",
-  "version": "0.0.5",
-  "description": "阴阳分，五行衍",
+  "name": "tao_trigram.js",
+  "version": "0.0.0",
+  "description": "八卦",
   "private": false,
   "license": "MPL-2.0",
   "author": {
@@ -18,7 +18,9 @@
     "build": "babel src/ -d dist/",
     "test:unit": "jest --verbose"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tao_taichi.js": "^0.0.5"
+  },
   "files": [
     "dist/",
     "readme.md"
@@ -43,7 +45,8 @@
   "keywords": [
     "tao",
     "taogram",
-		"taichi",
+    "taichi",
+    "trigram",
     "node",
     "js",
     "javascript"
