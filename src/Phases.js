@@ -4,19 +4,18 @@
  * @Author: lax
  * @Date: 2023-05-06 13:01:41
  * @LastEditors: lax
- * @LastEditTime: 2024-01-27 11:39:04
+ * @LastEditTime: 2024-01-27 13:03:44
  */
 const TaiChi = require("@/TaiChi.js");
-/**
- * 天一生水、地六成之;
- * 地二生火、天七成之;
- * 天三生木、地八成之;
- * 地四生金、天九成之;
- * 天五生土、地十成之;
- */
 const PHASES = ["水", "火", "木", "金", "土"];
 const SEQUENCE = ["金", "水", "木", "火", "土"];
 const RELATION = require("@/alias.js");
+/**
+ * 《尚书.洪范》：五行：一曰水，二曰火，三曰木，四曰金，五曰土。
+ * 水曰润下，火曰炎上，木曰曲直，金曰从革，土爰稼穑。
+ * 润下作咸，炎上作苦，曲直作酸，从革作辛，稼穑作甘。
+ * 固五行之序按水火木金土
+ */
 class Phases extends TaiChi {
 	constructor(phases, logos) {
 		if (typeof phases === "object" && phases instanceof Phases) return phases;
@@ -27,7 +26,7 @@ class Phases extends TaiChi {
 		 * @description 0~4->水火木金土
 		 */
 		this.phases = ~~(phases + 1) === 0 ? PHASES.indexOf(phases) : ~~phases % 5;
-		if (this.phases === -1)
+		if (this.phases < 0)
 			throw new Error(`该参数不可用/this arg can\`t be use =>${phases}`);
 
 		/**
@@ -38,9 +37,9 @@ class Phases extends TaiChi {
 	}
 
 	// 无需使用
-	// setPhases(phases) {
-	// 	this.phases = phases;
-	// }
+	setPhases(phases) {
+		this.phases = phases;
+	}
 
 	/**
 	 * 获取五行
@@ -115,12 +114,6 @@ class Phases extends TaiChi {
 	hao(is) {
 		return this.restrained(is);
 	}
-
-	// 相乘
-	// TODO
-
-	// 相侮
-	// TODO
 
 	// 同我者旺
 	vigorous(is) {
