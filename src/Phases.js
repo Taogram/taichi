@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2023-05-06 13:01:41
  * @LastEditors: lax
- * @LastEditTime: 2024-01-27 13:03:44
+ * @LastEditTime: 2024-01-27 14:31:17
  */
 const TaiChi = require("@/TaiChi.js");
 const PHASES = ["水", "火", "木", "金", "土"];
@@ -34,11 +34,6 @@ class Phases extends TaiChi {
 		 * @description 0~4->金水木火土
 		 */
 		this.round = SEQUENCE.indexOf(PHASES[this.phases]);
-	}
-
-	// 无需使用
-	setPhases(phases) {
-		this.phases = phases;
 	}
 
 	/**

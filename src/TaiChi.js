@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2023-05-05 16:19:28
  * @LastEditors: lax
- * @LastEditTime: 2024-01-27 12:50:28
+ * @LastEditTime: 2024-01-27 14:31:05
  */
 const LOGOS = ["阴", "阳"];
 /**
@@ -22,10 +22,6 @@ const LOGOS = ["阴", "阳"];
 class TaiChi {
 	constructor(logos) {
 		this.logos = ~~(logos + 1) === 0 ? LOGOS.indexOf(logos) : ~~logos % 2;
-	}
-
-	setLogos(logos) {
-		this.logos = logos;
 	}
 
 	getLogos(is = false) {
